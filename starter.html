@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<style type="text/css">
+
+</style>
+
+<body>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+
+
+<script type="text/javascript">
+ 
+
+var margin = {top: 50, right: 50, bottom: 50, left: 50};
+
+var width = 500 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var data1=[15]
+
+var svg = d3.select("body")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform","translate(" + margin.left  + "," + margin.top + ")")
+
+
+var circle1=svg.append('circle')
+			.attr("class","anscombe-circle-group")
+		    .attr('cx',10)
+		    .attr('cy',10)
+		    .attr('r',10)
+		    .attr('fill','red')
+var circle2=svg.append('circle')
+			.attr("class","anscombe-circle-group")
+		    .attr('cx',10)
+		    .attr('cy',50)
+		    .attr('r',10)
+		    .attr('fill','red')
+
+
+var circleGroups = svg.selectAll("circle")
+    .data(data1)
+    .attr('fill','black') //Update, will still bind data to previous circle
+
+    // .enter()//enter
+	   //  .append("circle")
+	   //  .attr("class","anscombe-circle-group")
+	   //  .attr('cx',10)
+	   //  .attr('cy',function (d){return d+30})
+	   //  .attr('r',function (d){return d;})
+	   //  .attr('fill','green')
+	.exit()
+		.remove()
+
+
+
+// var xScale = d3.scale.linear()
+//     .domain([0,20])
+//     .range([0, width])
+
+// var yScale = d3.scale.linear()
+//     .domain([0,20])
+//     .range([height, 0])
+
+// var xAxis = d3.svg.axis()
+//     .scale(xScale)
+//     .ticks(15)
+//     .tickSize(-height)
+//     .orient("bottom");
+
+//  var yAxis = d3.svg.axis()
+//     .scale(yScale)
+//     .ticks(15)
+//     .tickSize(-width)
+//     .orient("left");   
+
+// svg.append("g")
+//     .attr("class", "x axis")
+//     .attr("transform","translate(0," + height + ")" )
+//     .call(xAxis)
+
+// svg.append("g")
+//     .attr("class", "y axis")
+//     .call(yAxis)
+
+
+
+
+
+
+
+
+d3.tsv("quartet.tsv", read)
+
+
+function ready(error, guns, us) {
+  if (error) return console.warn(error);
+
+  console.log(us);
+  console.log(topojson.feature(us, us.objects.counties).features);
+
+}
+
+
+
+</script>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<style type="text/css">
+
+</style>
+
+<body>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+
+
+<script type="text/javascript">
+ 
+
+var margin = {top: 50, right: 50, bottom: 50, left: 50};
+
+var width = 500 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var data1=[15]
+
+var svg = d3.select("body")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform","translate(" + margin.left  + "," + margin.top + ")")
+
+
+var circle1=svg.append('circle')
+			.attr("class","anscombe-circle-group")
+		    .attr('cx',10)
+		    .attr('cy',10)
+		    .attr('r',10)
+		    .attr('fill','red')
+	
+var c2=	circle1.transition()
+				.duration(1500)
+				.delay(1000)
+				.attr('cx',150)
+				.attr('cy',150)
+				.transition()
+					.duration(1500)
+					.attr('cx',150)
+					.attr('cy',300)
+
+	c2.transition()
+		.duration(1500)
+		.attr('cx',10)
+		.attr('cy',10)
+		.each('start',function(){d3.select(this).attr('r',50)})
+		.each('end',function(){d3.select(this).attr('r',10)})
+
+
+
+
+
+
+
+d3.tsv("quartet.tsv", read)
+
+
+function ready(error, guns, us) {
+  if (error) return console.warn(error);
+
+  console.log(us);
+  console.log(topojson.feature(us, us.objects.counties).features);
+
+}
+
+
+
+</script>

@@ -1,0 +1,19 @@
+Data functions
+
+d3.min
+d3.max
+d3.extent
+d3.sum
+d3.mean
+d3.median
+d3.shuffle
+
+d3.json
+d3.tsv
+d3.csv
+
+
+
+javascript
+
+function (d,i) {} - data refers to data and i refers to the index
